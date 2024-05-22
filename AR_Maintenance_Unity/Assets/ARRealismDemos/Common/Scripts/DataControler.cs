@@ -80,13 +80,16 @@ public class DataControler : MonoBehaviour
     [SerializeField] public static List<SensorDevice> sensorDevices;
     [SerializeField]  public static SensorDevice currentSensorDevice;
     [SerializeField] public static int currentIndex = 0;
+    public static Transform rootTransform;
     private static Boolean isFetched = false;
-    public static string BASE_URL = "http://192.168.1.2:8080/api";
+    private static Boolean isTrackedRoot = false;
+    public static string BASE_URL = "http://192.168.1.127:8080/api";
     public static string stationName = "air_0001";
     public static int stationId = 1;
     public static Boolean isFormCancel = false;
     [SerializeField] public static event System.Action DataReady;
     [SerializeField] public static event System.Action SensorDeviceUpdate;
+    [SerializeField] public static event System.Action RootTracked;
 
     private void Start()
     {
@@ -112,6 +115,12 @@ public class DataControler : MonoBehaviour
         return isFetched;
     }
 
+    public static bool IsRootReady()
+    {
+        return isTrackedRoot;
+    }
+
+
     public static void UpdateCurrentIndex(int newIndex) {
         DataControler.currentIndex = newIndex;
     }
@@ -126,6 +135,11 @@ public class DataControler : MonoBehaviour
         DataControler.objectTransforms = JsonConvert.DeserializeObject<List<ObjectTransform>>(data);
     }
 
+    public static void UpdateRootTransform(Transform rootTransform) {
+        DataControler.rootTransform = rootTransform;
+        RootTracked?.Invoke();
+        DataControler.isTrackedRoot = true;
+    }
 }
 
 

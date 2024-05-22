@@ -17,15 +17,11 @@ using System;
 
 public class MaintenanceInstructionController : MonoBehaviour
 {
-    [SerializeField] public GameObject rootObject;
     [SerializeField] public GameObject objectPrefab;
     public MaintenanceFormControler maintenanceFormControler;
     public GameObject orientedReticleCreate;
     public GameObject editButton;
     public GameObject form;
-    public GameObject createButton;
-    public GameObject saveButton;
-    public GameObject doneButton;
     public GameObject dropButton;
     public LineRenderer connectLine;
     public TextMeshProUGUI maintenanceInstruction;
@@ -39,7 +35,7 @@ public class MaintenanceInstructionController : MonoBehaviour
         DataControler.DataReady += OnDataReady;
     }
 
-    private void OnDataReady()
+    public void OnDataReady()
     {
         // Xử lý khi dữ liệu đã sẵn sàng
         
@@ -47,6 +43,8 @@ public class MaintenanceInstructionController : MonoBehaviour
         {
             connectLine.positionCount = 2;
             this.orientedReticleCreate.SetActive(false);
+            this.currentObject.SetActive(false);
+            this.form.SetActive(false);
             DisplayObjectAtIndex();
         }
     }
@@ -55,7 +53,6 @@ public class MaintenanceInstructionController : MonoBehaviour
     private void Update()
     {
         currentObject.transform.rotation = Quaternion.LookRotation(Camera.main.transform.forward, Camera.main.transform.up);
-        
     }
 
     public void FormSubmited() {
@@ -141,7 +138,7 @@ public class MaintenanceInstructionController : MonoBehaviour
     }
 
     public ObjectTransform CreateObjectTransform(string maintenanceInstruction, string videoUrl, SensorDevice sensorDevice, int index, int id) {
-        Matrix4x4 qrTransform = rootObject.transform.localToWorldMatrix;
+        Matrix4x4 qrTransform = DataControler.rootTransform.localToWorldMatrix;
         Matrix4x4 objectTransform = orientedReticleCreate.transform.localToWorldMatrix;
         Matrix4x4 objectRelativeTransform = qrTransform.inverse * objectTransform;
         Vector3 objectRelativePosition = objectRelativeTransform.GetColumn(3);
@@ -181,7 +178,7 @@ public class MaintenanceInstructionController : MonoBehaviour
         }
         ObjectData objectData = new ObjectData(DataControler.objectTransforms[DataControler.currentIndex]);
 
-        currentObject.transform.position = rootObject.transform.TransformPoint(objectData.position) + new Vector3(1f, 1f, 1f);
+        currentObject.transform.position = DataControler.rootTransform.TransformPoint(objectData.position) + new Vector3(1f, 1f, 1f);
 
         RectTransform rf = currentObject.GetComponent<RectTransform>();
 
@@ -189,8 +186,8 @@ public class MaintenanceInstructionController : MonoBehaviour
         Vector3 bottomLeftFront = new Vector3(objectPosition.x - rf.rect.size.x * rf.lossyScale.x/2f, objectPosition.y - rf.rect.size.y * rf.lossyScale.y/2f, objectPosition.z);
 
         connectLine.SetPosition(0, bottomLeftFront);
-        connectLine.SetPosition(1, rootObject.transform.TransformPoint(objectData.position));
-        currentObject.transform.rotation = rootObject.transform.rotation * objectData.rotation;
+        connectLine.SetPosition(1, DataControler.rootTransform.TransformPoint(objectData.position));
+        currentObject.transform.rotation = DataControler.rootTransform.rotation * objectData.rotation;
         currentObject.transform.localScale = objectData.scale;
 
         TextMeshProUGUI textMeshPro = maintenanceInstruction.GetComponentInChildren<TextMeshProUGUI>();
