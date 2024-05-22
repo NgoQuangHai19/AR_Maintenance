@@ -124,100 +124,111 @@ public class WebSocketConnection : MonoBehaviour
         SimpleJSON.JSONNode jData = SimpleJSON.JSONNode.Parse(e.Data);
         //Debug.Log(jData);
         //Debug.Log(jData);
-        if (jData["id"] == "ph_0002")
+        if (jData["type"] == "Realtime")
         {
-            ph = jData["value"];
-            Debug.Log(ph); 
-        }
-        else if (jData["id"] == "Nito_0002")
-        {
-            nito = jData["value"];
-        }
-        else if (jData["id"] == "temp_0002")
-        {
-            temperature =  jData["value"];
-        }
-        else if (jData["id"] == "humi_0002")
-        {
-            humidity =  jData["value"];
-        }
-        else if (jData["id"] == "Photpho_0002")
-        {
-            photpho =  jData["value"];
-        }
-        else if (jData["id"] == "Kali_0002")
-        {
-            kali =  jData["value"];
-        }
-        else if (jData["id"] == "Relay_0001")
-        {
-            if(jData == "True"){
-                relay1 = "ON";
+            if (jData["id"] == "ph_0002")
+            {
+                ph = jData["value"];
+                Debug.Log(ph);
             }
-            else{
-                relay1 = "OFF";
+            else if (jData["id"] == "Nito_0002")
+            {
+                nito = jData["value"];
+            }
+            else if (jData["id"] == "temp_0002")
+            {
+                temperature = jData["value"];
+            }
+            else if (jData["id"] == "humi_0002")
+            {
+                humidity = jData["value"];
+            }
+            else if (jData["id"] == "Photpho_0002")
+            {
+                photpho = jData["value"];
+            }
+            else if (jData["id"] == "Kali_0002")
+            {
+                kali = jData["value"];
+            }
+            else if (jData["id"] == "Relay_0001")
+            {
+                if (jData == "True")
+                {
+                    relay1 = "ON";
+                }
+                else
+                {
+                    relay1 = "OFF";
+                }
+            }
+            else if (jData["id"] == "Relay_0002")
+            {
+                if (jData == "True")
+                {
+                    relay2 = "ON";
+                }
+                else
+                {
+                    relay2 = "OFF";
+                }
             }
         }
-        else if (jData["id"] == "Relay_0002")
+        if (jData["type"] == "PREDICTION")
         {
-            if(jData == "True"){
-                relay2 = "ON";
+            Debug.Log("Prediction");
+        }
+
+            /* if (jData["sensor_id"] == Window_Graph.sLabel)
+             {
+                 Window_Graph.valueAndTime a;
+                 a.val = jData["sensor_value"];
+                 a.time = jData["created_at"];
+                 //Debug.Log(a.val);
+                 //Debug.Log(a.time);
+                 Window_Graph.valueAndTimeList.Add(a);
+                 Window_Graph.valueAndTimeList.RemoveAt(0);
+             }*/
+            /*string[] Data = e.Data.Split(" ");
+            if (Data[0] == "co")
+            {
+                co = "CO: " + Data[1];
             }
-            else{
-                relay2 = "OFF";
+            else if (Data[0] == "co2")
+            {
+                co2 = "CO2: " + Data[1];
             }
-        }
-        
-       /* if (jData["sensor_id"] == Window_Graph.sLabel)
-        {
-            Window_Graph.valueAndTime a;
-            a.val = jData["sensor_value"];
-            a.time = jData["created_at"];
-            //Debug.Log(a.val);
-            //Debug.Log(a.time);
-            Window_Graph.valueAndTimeList.Add(a);
-            Window_Graph.valueAndTimeList.RemoveAt(0);
-        }*/
-        /*string[] Data = e.Data.Split(" ");
-        if (Data[0] == "co")
-        {
-            co = "CO: " + Data[1];
-        }
-        else if (Data[0] == "co2")
-        {
-            co2 = "CO2: " + Data[1];
-        }
-        else if (Data[0] == "humidity")
-        {
-            humidity = "humi: " + Data[1];
-        }
-        else if (Data[0] == "no2")
-        {
-            no2 = "NO2: " + Data[1];
-        }
-        else if (Data[0] == "o3")
-        {
-            o3 = "O3: " + Data[1];
-        }
-        else if (Data[0] == "so2")
-        {
-            so2 = "so2 " + Data[1];
-        }
-        else if (Data[0] == "pm10")
-        {
-            pm10 = "PM10: " + Data[1];
-        }
-        else if (Data[0] == "pm2-5")
-        {
-            pm2_5 = "PM2_5: " + Data[1];
-        }
-        else if (Data[0] == "temperature")
-        {
-            temperature = "temp: " + Data[1];
-        }*/
+            else if (Data[0] == "humidity")
+            {
+                humidity = "humi: " + Data[1];
+            }
+            else if (Data[0] == "no2")
+            {
+                no2 = "NO2: " + Data[1];
+            }
+            else if (Data[0] == "o3")
+            {
+                o3 = "O3: " + Data[1];
+            }
+            else if (Data[0] == "so2")
+            {
+                so2 = "so2 " + Data[1];
+            }
+            else if (Data[0] == "pm10")
+            {
+                pm10 = "PM10: " + Data[1];
+            }
+            else if (Data[0] == "pm2-5")
+            {
+                pm2_5 = "PM2_5: " + Data[1];
+            }
+            else if (Data[0] == "temperature")
+            {
+                temperature = "temp: " + Data[1];
+            }*/
 
 
-    }
+        }
 
     private void OnSocketError(object sender, ErrorEventArgs e)
     {
