@@ -1,12 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Vuforia;
 using TMPro;
 
-public class BarcodeScanner : MonoBehaviour
+public class ScanBarcode : MonoBehaviour
 {
+
     public Text resultText;
     public BarcodeBehaviour mBarcodeBehaviour;
     public GameObject switchButton;
@@ -45,19 +46,20 @@ public class BarcodeScanner : MonoBehaviour
             {
                 //qr = "No QR";
                 //Debug.Log(qr);
-                //mBarcodeBehaviour = GetComponent<BarcodeBehaviour>();
+                mBarcodeBehaviour = GetComponent<BarcodeBehaviour>();
             }
         }
     }
 
-/*    public void startScan()
+    public void startScan()
     {
         resultText.text = "Scaning...";
         //mBarcodeBehaviour = GetComponent<BarcodeBehaviour>();
-    }*/
+    }
 
     public string GetData()
     {
         return qr;
     }
+
 }

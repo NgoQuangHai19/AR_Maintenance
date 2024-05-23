@@ -115,7 +115,7 @@ public class WebSocketConnection : MonoBehaviour
 
         // Gửi tin nhắn tới máy chủ
         //socket.Send("co,no2,o3,so2,humidity,pm10,pm2_5,co2,temperature");
-        socket.Send(SimpleBarcodeScanner.qr);
+        socket.Send(ScanBarcode.qr);
     }
 
     private void OnSocketMessage(object sender, MessageEventArgs e)

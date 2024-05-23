@@ -29,12 +29,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/ARRealismDemos/ARLine/interaction.unity
     guid: 22f684dfd181ed74183bb64a7ec108a2
-  - enabled: 1
+  - enabled: 0
     path: Assets/ARRealismDemos/ARLine/savePosition.unity
     guid: 2edd2c46f06349347b2817a4955d261b
   - enabled: 0
     path: Assets/ARRealismDemos/ARLine/UniWebViewDemo.unity
     guid: 938c077f40a814d4584ce2ad17947cf3
+  - enabled: 1
+    path: Assets/ARRealismDemos/ARLine/ScanQRScene.unity
+    guid: 600392b29fa8b814788d00d0f57070a5
+  - enabled: 1
+    path: Assets/ARRealismDemos/ARLine/UIScene.unity
+    guid: 74db95826b94f8747a236340d96f46f2
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: 744b813df90924c169af73489b8325de,
       type: 2}

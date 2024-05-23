@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vuforia:
     vuforiaLicenseKey: Af+bCDT/////AAABmVM8LsBPuEGFuxc3Yd17MMyI50Wfi2hQm2T2dGy6bGe3f6XH+WBjeSNmiH7AQuoFnNwzCPduRQA0iUAde0BVi/SGscUe+weEDGsr8+WWFJFPqrrpUxh4hTDgxvEMsghVg8Z3aTK0EoNQsLBrVlLuscSZ3J7ZL0WXkRm18CML1n1trijaZWRUSoxUSF+f9JDBeSWpvb0nFFVMiJ386prfpJRZijE3SSg15toB5l0lVAaeRpNmnuJXpjSEccllURgzVM8A3rvyfk0fozEUrx+kI1MToJxeNGOa9/tUAHZC98f5RJMFPLbD5P2NSuBEOKed2QtNbA9PRv7uDB+xATkDDXGdwWItfct/aVb4ehnSzmR1
-    ufoLicenseKey: QVdaY0duLy8vLy8vQUFBQUtIQ2RLRWk5UFVtWXVPU0crTDdNK0Y0c2VWZFZOSmVmbU5IODhpdmRYWndJZTZieUU0YWJtV0lhRkhaK3J2aTJVK2lHWVA3VVBNbE82a3gzaGcxR3NKQ2N2VUUxL3NGS241SnB0QjNMcE50dWZoOGZWZ3M0WjBMNnE0TGJYb3RXSXJiaW5XbkJiejZnM003ZEFRSEh6ajN5c0dOWjdWRGE2Tk1kYktBRWtjRTRVSHh3MXBxM1F6YkV3V1pFSHgwQWpLVGFtUVpkSUtGem9JdTR0UllaYXQyK3dpYitiU1N4UTI0bmY1LytidmJIZ3NFM05oaTZxaysvNEpKcFNROHFBWFJ0ZkltY09LTG53WnpxVldseEs5aVkwUmJudlhDb3cxTG5MUzROYXhhZzR3b2x6L2h6RWJBcWkyZ2Rid1NvRXlFNEFveW9PbjltL3cvT1I5T2RYTFczd20ra1ZoVTVvenBqWDZRM1k4WDU=
+    ufoLicenseKey: QWZpS21xci8vLy8vQUFBQUtJSFg4SmJmUTBWRmd6VHBxR3lJR1FRMU80enlvSW9lNTMvM0JPTkdWYTBaS2lUVUtRamNYa244MTJmclhVN0Myanhxem1sRWFhOW11SXNFOGdZeEJUZ2hPaVovVkoxR1Fia2x5T3pZL3BPSVI3QTNzYzI5VVNWU04zVDhkckxyN05hMVpiQzVLeEdHK1FXU1BxRC9DdDJxRkZSZWFyS2xQMkFyMmpJSEd4Q2lUNW1UaFVqSEpDNzI1YTVid241YkVqQWkvc1RUR24vY0tnZGFreGx3Rit3RUxneGdvZ2hQNE9heGFQZW1wN0h0MGtGekZteGJsZmNtRERKdHZqT3Uva3JsbHdjTThKUUl0NExJWUoyMWUrVHltL3ZBU3RublpidlZwTzk5dEFxZHZpUzNjUmcwdHlsSHU3OFk0MTZBUGFpRVovK0hJUncrdDNpNjVzN3RTelJSVzh2STNBVmF4TllMRjJxNWtnYVc=
     delayedInitialization: 0
     cameraFocusModeSetting: 2
     cameraDeviceModeSetting: -1
@@ -30,19 +30,12 @@ MonoBehaviour:
   shaders:
     depthMaskShader: {fileID: 4800000, guid: 9894afa5f3a5e4bbca625981beb1b20e, type: 3}
     outlineShader: {fileID: 4800000, guid: 88d3b6b5cf364476ca39fcec255331b1, type: 3}
-<<<<<<< HEAD
     unlitTransparentShader: {fileID: 10750, guid: 0000000000000000f000000000000000,
       type: 0}
   videoBackground:
     numDivisions: 2
     videoBackgroundShader: {fileID: 4800000, guid: 144dfca22ac584ade9e538e24a5ddded,
       type: 3}
-=======
-    unlitTransparentShader: {fileID: 10750, guid: 0000000000000000f000000000000000, type: 0}
-  videoBackground:
-    numDivisions: 2
-    videoBackgroundShader: {fileID: 4800000, guid: 144dfca22ac584ade9e538e24a5ddded, type: 3}
->>>>>>> 907e2ad150329d9e39cf6c655eb23824eb244daf
     unlitShader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
     videoBackgroundEnabled: 1
   deviceTracker:
@@ -56,4 +49,4 @@ MonoBehaviour:
   webcam:
     renderTextureLayer: 30
   packageInformation:
-    ARFoundationVersion: 5.0.7
+    ARFoundationVersion: 
