@@ -30,7 +30,7 @@ public class WebSocketConnection : MonoBehaviour
     /*string linkSocket = "ws://192.168.0.115:8080/websocket?id=" + SimpleBarcodeScanner.qr;*/
     //private string linkSocket = "ws://10.229.33.207:8080/websocket?stationId=" + "bkair_0001";
     //private string linkSocket = "wss://ar-application-service.onrender.com/websocket?stationId=bkair_0001";
-    private string linkSocket = "ws://192.168.1.140:8080/websocket?stationId=air_0002";
+    private string linkSocket = "ws://192.168.1.138:8080/websocket?stationId=air_0002";
 
     //string linkSocket = "ws://iot-server-da6s.onrender.com/websocket?id=bkair_0001";
     private void Start()

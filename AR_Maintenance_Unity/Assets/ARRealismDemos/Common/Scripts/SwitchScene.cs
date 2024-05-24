@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SwitchScene : MonoBehaviour
 {
     //public string sceenName;
-    public void LoadSceen(int sceneName){
+    public void LoadSceen(string sceneName){
         SceneManager.LoadScene(sceneName);
     }
 }

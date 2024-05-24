@@ -84,7 +84,7 @@ public class DataControler : MonoBehaviour
     private static Boolean isFetched = false;
     private static Boolean isTrackedRoot = false;
     public static string stationName = "air_0001";
-    public static string BASE_URL = "http://192.168.1.12:8080/api";
+    public static string BASE_URL = "http://192.168.1.138:8080/api";
     public static int stationId = 1;
     public static Boolean isFormCancel = false;
     [SerializeField] public static event System.Action DataReady;
