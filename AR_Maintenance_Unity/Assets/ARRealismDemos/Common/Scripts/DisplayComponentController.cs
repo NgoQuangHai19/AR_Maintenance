@@ -13,12 +13,12 @@ public class DisplayComponentController : MonoBehaviour
     public GameObject DisplayButton;
 
     void Start() {
+        DataControler.RootTracked += RootTracked;
         form.SetActive(false);
         MaintenanceInstruction.SetActive(false);
         CreateButton.SetActive(false);
         EditButton.SetActive(false);
         DisplayButton.SetActive(false);
-        DataControler.RootTracked += RootTracked;
     }
 
     void Update()

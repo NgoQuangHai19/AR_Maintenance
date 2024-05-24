@@ -40,8 +40,10 @@ public class MaintenanceFormControler : MonoBehaviour
     public GameObject formObject;
     public MaintenanceInstructionController maintenanceInstructionController;
     private ObjectTransform objectTransform;
-
+    int setUp = 2;
     private async void Start() {
+        formType = FormType.Update;
+        formType = FormType.Update;
         DataControler.DataReady += OnDataReady;
     }
 
@@ -50,9 +52,9 @@ public class MaintenanceFormControler : MonoBehaviour
         // Xử lý khi dữ liệu đã sẵn sàng
         if (DataControler.IsDataReady())
         {
-            SetActiveForm(false);
-            currentState = State.Nomal;
             SetDropDownValue(DataControler.sensorDevices);
+            SetActiveForm(true);
+            currentState = State.Nomal;
             sensorDeviceDropdown.onValueChanged.AddListener(OnDropdownValueChanged);
             SetUpForm();
         }
@@ -60,7 +62,6 @@ public class MaintenanceFormControler : MonoBehaviour
 
     public void SetUpForm() {
         currentState = State.Nomal;
-        
         maintenanceInstructionText.text = this.objectTransform.maintenanceInstruction;
         videUrlText.text = this.objectTransform.videoUrl;
         indexText.text = DataControler.currentIndex.ToString();
@@ -76,6 +77,10 @@ public class MaintenanceFormControler : MonoBehaviour
     
 
     private void Update() {
+        while(this.setUp > 0) {
+            SetDropDownValue(DataControler.sensorDevices);
+            this.setUp--;
+        }
         switch (currentState)
         {
             case State.Instruction:
@@ -111,18 +116,26 @@ public class MaintenanceFormControler : MonoBehaviour
     }
 
     private void SetDropDownValue(List<SensorDevice> sensorDevices) {
-        List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
+        int index = 2;
+        while(index > 0) {
+            List<TMP_Dropdown.OptionData> options = new List<TMP_Dropdown.OptionData>();
 
-        foreach (SensorDevice sensorDevice in sensorDevices) {
-            TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData(sensorDevice.sensorname);
-            options.Add(option);
+            foreach (SensorDevice sensorDevice in sensorDevices) {
+                TMP_Dropdown.OptionData option = new TMP_Dropdown.OptionData(sensorDevice.sensorname);
+                options.Add(option);
+            }
+
+            this.sensorDeviceDropdown.AddOptions(options);
+            index--;
         }
-
-        this.sensorDeviceDropdown.AddOptions(options);
     }
 
     private void OnDropdownValueChanged(int index) {
-        DataControler.UpdateCurrentSensorDevice(DataControler.sensorDevices[index]);
+        for(int i = 0; i < 5; i++) {
+            this.objectTransform.sensorDevice = DataControler.sensorDevices[index];
+            DataControler.objectTransforms[DataControler.currentIndex].sensorDevice = DataControler.sensorDevices[index];
+            DataControler.UpdateCurrentSensorDevice(DataControler.sensorDevices[index]);
+        }
     }
 
     public void InstructionFieldOnClick() {
@@ -136,26 +149,26 @@ public class MaintenanceFormControler : MonoBehaviour
     }
 
     public void SetInitialValueDropdown() {
-        if(formType == FormType.Create) {
-            int index = 1;
-
-            // Đặt giá trị ban đầu cho dropdown
-            this.sensorDeviceDropdown.value = index;
-            this.oldSensorDevice = DataControler.objectTransforms[DataControler.currentIndex].sensorDevice;
-            DataControler.UpdateCurrentSensorDevice(DataControler.sensorDevices[1]);
-        }
-        else {
-            bool isDeviceExist = DataControler.sensorDevices.Contains(objectTransform.sensorDevice);
-
-            if (isDeviceExist)
-            {
-                // Lấy chỉ mục của sensorDevice trong danh sách listSensor
-                int index = DataControler.sensorDevices.IndexOf(objectTransform.sensorDevice);
-
-                // Đặt giá trị ban đầu cho dropdown
-                this.sensorDeviceDropdown.value = index;
-                this.oldSensorDevice = objectTransform.sensorDevice;
+        int count = 6;
+        while(count > 0) {
+            if(formType == FormType.Update) {
+                int index = 0;
+                foreach (SensorDevice sensorDevice in DataControler.sensorDevices) {
+                    if(sensorDevice.id == objectTransform.sensorDevice.id) {
+                    // Đặt giá trị ban đầu cho dropdown
+                        this.sensorDeviceDropdown.value = index;
+                        this.oldSensorDevice = objectTransform.sensorDevice;
+                        break;
+                    }
+                    index++;
+                }
             }
+            else {
+                this.sensorDeviceDropdown.value = 0;
+                this.oldSensorDevice = DataControler.objectTransforms[DataControler.currentIndex].sensorDevice;
+                DataControler.UpdateCurrentSensorDevice(DataControler.sensorDevices[1]);
+            }
+            count--;
         }
     }
 
@@ -188,7 +201,9 @@ public class MaintenanceFormControler : MonoBehaviour
 
         this.objectTransform.maintenanceInstruction = this.maintenanceInstructionText.text;
         this.objectTransform.videoUrl = this.videUrlText.text;
-        this.objectTransform.sensorDevice = DataControler.currentSensorDevice;
+        for(int i = 0; i < 5; i++) {
+            this.objectTransform.sensorDevice = DataControler.currentSensorDevice;
+        }
         this.objectTransform.stationId = DataControler.stationId;
         string jsonData = JsonConvert.SerializeObject(this.objectTransform);
         if(this.formType == FormType.Create) {
@@ -229,5 +244,6 @@ public class MaintenanceFormControler : MonoBehaviour
         DataControler.objectTransforms[DataControler.currentIndex].scaleZ = this.objectTransform.scaleZ;
         DataControler.objectTransforms[DataControler.currentIndex].maintenanceInstruction = this.maintenanceInstructionText.text;
         DataControler.objectTransforms[DataControler.currentIndex].videoUrl = this.videUrlText.text;
+        DataControler.objectTransforms[DataControler.currentIndex].sensorDevice = DataControler.currentSensorDevice;
     }
 }

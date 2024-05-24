@@ -9,7 +9,7 @@ public class TrackedRootObject : MonoBehaviour
 {
     [SerializeField]
     ARTrackedImageManager m_TrackedImageManager;
-
+    private int stept = 75;
 
 
     void Start() {
@@ -22,18 +22,19 @@ public class TrackedRootObject : MonoBehaviour
 
     void OnChanged(ARTrackedImagesChangedEventArgs eventArgs)
     {
-        foreach (var newImage in eventArgs.added) {
-            // Handle added event
-            if(!DataControler.IsRootReady() && DataControler.IsRootReady() == false) {
-                DataControler.UpdateRootTransform(newImage.transform);
-            }
-        }
+        // foreach (var newImage in eventArgs.added) {
+        //     // Handle added event
+        //     if(!DataControler.IsRootReady() && DataControler.IsRootReady() == false) {
+        //         DataControler.UpdateRootTransform(newImage.transform);
+        //     }
+        // }
 
 
         foreach (var updatedImage in eventArgs.updated) {
-            if(!DataControler.IsRootReady() && DataControler.IsRootReady() == false) {
+            if(!DataControler.IsRootReady() && DataControler.IsRootReady() == false && stept == 0) {
                 DataControler.UpdateRootTransform(updatedImage.transform);
             }
+            stept--;
         }
 
 

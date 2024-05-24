@@ -83,6 +83,7 @@ public class MaintenanceInstructionController : MonoBehaviour
         orientedReticleCreate.SetActive(true);
         dropButton.SetActive(true);
         this.maintenanceFormControler.SetFormType(FormType.Update);
+        this.maintenanceFormControler.SetUpForm();
     }
 
     public void DropButtonOnclick() {

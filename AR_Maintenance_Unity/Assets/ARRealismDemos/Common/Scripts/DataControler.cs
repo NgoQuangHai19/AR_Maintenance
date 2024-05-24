@@ -83,8 +83,8 @@ public class DataControler : MonoBehaviour
     public static Transform rootTransform;
     private static Boolean isFetched = false;
     private static Boolean isTrackedRoot = false;
-    public static string BASE_URL = "http://192.168.1.127:8080/api";
     public static string stationName = "air_0001";
+    public static string BASE_URL = "http://192.168.1.12:8080/api";
     public static int stationId = 1;
     public static Boolean isFormCancel = false;
     [SerializeField] public static event System.Action DataReady;
@@ -101,10 +101,10 @@ public class DataControler : MonoBehaviour
     }
 
     public static async void fetchData() {
-        string data = await APICallerHelper.GetData(BASE_URL + "/object/transform/1");
-        DataControler.objectTransforms = JsonConvert.DeserializeObject<List<ObjectTransform>>(data);
-        data = await APICallerHelper.GetData(BASE_URL + "/sensor-device/1");
+        string data = await APICallerHelper.GetData(BASE_URL + "/sensor-device/1");
         DataControler.sensorDevices = JsonConvert.DeserializeObject<List<SensorDevice>>(data);
+        data = await APICallerHelper.GetData(BASE_URL + "/object/transform/1");
+        DataControler.objectTransforms = JsonConvert.DeserializeObject<List<ObjectTransform>>(data);
         UpdateCurrentSensorDevice(DataControler.objectTransforms[DataControler.currentIndex].sensorDevice);
         DataControler.isFetched = true;
         DataReady?.Invoke();
@@ -126,7 +126,9 @@ public class DataControler : MonoBehaviour
     }
 
     public static void UpdateCurrentSensorDevice(SensorDevice sensorDevice) {
-        DataControler.currentSensorDevice = sensorDevice;
+        for(int i = 0; i < 3; i++) {
+            DataControler.currentSensorDevice = sensorDevice;
+        }
         SensorDeviceUpdate?.Invoke();
     }
 
