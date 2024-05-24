@@ -1215,8 +1215,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
-<<<<<<< HEAD
-=======
 --- !u!1 &653934307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,7 +1844,6 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 0}
   m_ButtonPressPoint: 0.5
->>>>>>> 907e2ad150329d9e39cf6c655eb23824eb244daf
 --- !u!1 &705561352
 GameObject:
   m_ObjectHideFlags: 0
