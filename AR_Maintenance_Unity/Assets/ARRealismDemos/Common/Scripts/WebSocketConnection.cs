@@ -38,7 +38,7 @@ public class WebSocketConnection : MonoBehaviour
     /*string linkSocket = "ws://192.168.0.115:8080/websocket?id=" + SimpleBarcodeScanner.qr;*/
     //private string linkSocket = "ws://10.229.33.207:8080/websocket?stationId=" + "bkair_0001";
     //private string linkSocket = "wss://ar-application-service.onrender.com/websocket?stationId=bkair_0001";
-    private string linkSocket = "ws://192.168.1.138:8080/websocket?stationId=air_0002";
+    private string linkSocket = "ws://192.168.1.139:8080/websocket?stationId=air_0002";
 
     //string linkSocket = "ws://iot-server-da6s.onrender.com/websocket?id=bkair_0001";
     private void Start()
@@ -136,7 +136,8 @@ public class WebSocketConnection : MonoBehaviour
         SimpleJSON.JSONNode jData = SimpleJSON.JSONNode.Parse(e.Data);
         //Debug.Log(jData);
         //Debug.Log(jData);
-        if (jData["type"] == "Realtime")
+        Debug.Log(jData["value"]);
+        if (jData["type"] == "PRESENT")
         {
             if (jData["id"] == "ph_0002")
             {
@@ -165,7 +166,7 @@ public class WebSocketConnection : MonoBehaviour
             }
             else if (jData["id"] == "Relay_0001")
             {
-                if (jData == "True")
+                if (jData == "true")
                 {
                     relay1 = "ON";
                 }
@@ -176,7 +177,7 @@ public class WebSocketConnection : MonoBehaviour
             }
             else if (jData["id"] == "Relay_0002")
             {
-                if (jData == "True")
+                if (jData == "true")
                 {
                     relay2 = "ON";
                 }
