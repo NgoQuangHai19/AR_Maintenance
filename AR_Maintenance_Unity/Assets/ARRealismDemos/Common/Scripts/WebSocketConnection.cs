@@ -16,6 +16,10 @@ public class WebSocketConnection : MonoBehaviour
     public TMP_Text RELAY2;
     public TMP_Text TEMPERATURE;
     //public TMP_Text SENSOR2;
+    public TMP_Text TEMPERATURE_Predict;
+    public TMP_Text HUMIDITY_Predict;
+    public TMP_Text PH_Predict;
+    public TMP_Text SoidSensor_Predict;
     public TMP_Text inforCabinet;
     public string ph;
     public string nito;
@@ -25,6 +29,10 @@ public class WebSocketConnection : MonoBehaviour
     public string relay1;
     public string relay2;
     public string temperature;
+    public string temperature_Predict;
+    public string humidity_Predict;
+    public string ph_Predict;
+    public string soidsensor_Predict;
     public TMP_Text[] textObjects;
 
     /*string linkSocket = "ws://192.168.0.115:8080/websocket?id=" + SimpleBarcodeScanner.qr;*/
@@ -106,6 +114,10 @@ public class WebSocketConnection : MonoBehaviour
         RELAY2.text = relay2;
         PHOTPHO.text = photpho;
         TEMPERATURE.text = temperature;
+        HUMIDITY_Predict.text = humidity_Predict;
+        TEMPERATURE_Predict.text = temperature_Predict;
+        PH_Predict.text = ph_Predict;
+        SoidSensor_Predict.text = soidsensor_Predict;
         //Debug.Log(inforCabinet.text);
     }
 
@@ -176,56 +188,22 @@ public class WebSocketConnection : MonoBehaviour
         }
         if (jData["type"] == "PREDICTION")
         {
-            Debug.Log("Prediction");
+            if (jData["id"] == "ph_0002")
+            {
+                ph_Predict = jData["value"];
+            }
+            else if (jData["id"] == "temp_0002")
+            {
+                temperature_Predict = jData["value"];
+            }
+            else if (jData["id"] == "humi_0002")
+            {
+                humidity_Predict = jData["value"];
+            }
+            else if(jData["id"] == "soidsensor_0002"){
+                soidsensor_Predict = jData["value"];
+            }
         }
-
-            /* if (jData["sensor_id"] == Window_Graph.sLabel)
-             {
-                 Window_Graph.valueAndTime a;
-                 a.val = jData["sensor_value"];
-                 a.time = jData["created_at"];
-                 //Debug.Log(a.val);
-                 //Debug.Log(a.time);
-                 Window_Graph.valueAndTimeList.Add(a);
-                 Window_Graph.valueAndTimeList.RemoveAt(0);
-             }*/
-            /*string[] Data = e.Data.Split(" ");
-            if (Data[0] == "co")
-            {
-                co = "CO: " + Data[1];
-            }
-            else if (Data[0] == "co2")
-            {
-                co2 = "CO2: " + Data[1];
-            }
-            else if (Data[0] == "humidity")
-            {
-                humidity = "humi: " + Data[1];
-            }
-            else if (Data[0] == "no2")
-            {
-                no2 = "NO2: " + Data[1];
-            }
-            else if (Data[0] == "o3")
-            {
-                o3 = "O3: " + Data[1];
-            }
-            else if (Data[0] == "so2")
-            {
-                so2 = "so2 " + Data[1];
-            }
-            else if (Data[0] == "pm10")
-            {
-                pm10 = "PM10: " + Data[1];
-            }
-            else if (Data[0] == "pm2-5")
-            {
-                pm2_5 = "PM2_5: " + Data[1];
-            }
-            else if (Data[0] == "temperature")
-            {
-                temperature = "temp: " + Data[1];
-            }*/
 
 
         }

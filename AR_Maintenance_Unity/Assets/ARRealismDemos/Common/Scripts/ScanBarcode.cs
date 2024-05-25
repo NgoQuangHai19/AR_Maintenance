@@ -36,6 +36,7 @@ public class ScanBarcode : MonoBehaviour
                 {
                     qr = "00002";
                 }
+                else qr = mBarcodeBehaviour.InstanceData.Text;
                 //qr = mBarcodeBehaviour.InstanceData.Text;
                 resultText.text = "This is device " + qr;
                 startButton.SetActive(false);
